@@ -1,0 +1,26 @@
+# ── Render Blueprint ─────────────────────────────────────────────────────
+# Deploy: Connect your GitHub repo → Render auto-detects this file
+# Docs:   https://docs.render.com/blueprint-spec
+
+services:
+  - type: web
+    name: mozhii-ai
+    runtime: python
+    plan: free                      # free | starter | standard
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn backend.main:app -w 2 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
+    healthCheckPath: /api/public-stats
+    autoDeploy: true
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true          # Render auto-generates a secure random value
+      - key: DATA_DIR
+        value: "/data"               # Persistent disk mount path
+      - key: CORS_ORIGINS
+        value: "*"                   # Change to your domain after deployment
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+    disk:
+      name: mozhii-data
+      mountPath: /data               # Persistent disk for DB + uploads
+      sizeGB: 1                      # 1 GB (free tier limit)

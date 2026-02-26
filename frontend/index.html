@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mozhii.AI — Data Collection Platform</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="/static/assets/logo.png" alt="Mozhii.AI" class="logo-img">
+                <span class="logo-text">Data Collection Platform <span class="logo-dot"></span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" data-i18n="nav_about">About</a>
+                <a href="#why" data-i18n="nav_why">Why Contribute</a>
+                <a href="#guide" data-i18n="nav_guide">User Guide</a>
+                <a href="#contribute" data-i18n="nav_contribute">Contribute</a>
+                <a href="https://mozhii.online/team" target="_blank" data-i18n="nav_team">Our Team</a>
+            </div>
+            <div class="nav-actions">
+                <!-- Mobile Menu -->
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="hero-particles" id="heroParticles"></div>
+            <div class="hero-gradient"></div>
+            <!-- Animated orbit rings -->
+            <div class="hero-orbit hero-orbit-1"></div>
+            <div class="hero-orbit hero-orbit-2"></div>
+            <div class="hero-orbit hero-orbit-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge animate-fade-up" data-i18n="hero_badge">Open Source Data Initiative</div>
+            <h1 class="hero-title animate-fade-up delay-1">
+                <span class="hero-rotating-wrapper">
+                    <span class="hero-rotating-line active" data-i18n="hero_line_1">Train Tomorrow's AI</span>
+                    <span class="hero-rotating-line" data-i18n="hero_line_2">Build the Dataset</span>
+                    <span class="hero-rotating-line" data-i18n="hero_line_3">Shape Language AI</span>
+                    <span class="hero-rotating-line" data-i18n="hero_line_4">Power the Future</span>
+                </span>
+                <span class="gradient-text" data-i18n="hero_title_2">of Tamil & Sinhala AI</span>
+            </h1>
+            <p class="hero-desc animate-fade-up delay-2" data-i18n="hero_desc">
+                Contribute Tamil, Sinhala & English text data to train Mozhii.AI — a multilingual AI built for Sri Lanka.
+            </p>
+            <div class="hero-actions animate-fade-up delay-3">
+                <a href="#contribute" class="btn btn-primary btn-glow btn-lg">
+                    <i class="fas fa-database"></i>
+                    <span data-i18n="hero_cta">Contribute Data</span>
+                </a>
+            </div>
+            <div class="hero-stats animate-fade-up delay-4">
+                <div class="stat-item">
+                    <div class="stat-number" id="statContributors">40+</div>
+                    <div class="stat-label" data-i18n="stat_contributors">Contributors</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" id="statDatasets">8+</div>
+                    <div class="stat-label" data-i18n="stat_datasets">Datasets</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label" data-i18n="stat_languages">Languages</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator animate-fade-up delay-5">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span data-i18n="scroll_down">Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- ═══════════ ABOUT ═══════════ -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <div class="about-hero-layout">
+                <div class="about-text-side reveal reveal-left">
+                    <span class="section-tag" data-i18n="about_tag">WHAT IS MOZHII.AI?</span>
+                    <h2 class="about-main-title" data-i18n="about_title">Building Language AI<br>for South Asia</h2>
+                    <p class="about-main-desc" data-i18n="about_main_desc">Mozhii.AI is an open-source language model initiative focused on Tamil, Sinhala, and English. We're building high-quality datasets through community contributions to train AI models that truly understand our languages and cultures.</p>
+                    <a href="https://mozhii.online/team" target="_blank" class="about-team-link reveal">
+                        <span>🌐</span> <span data-i18n="about_team_link">Meet Our Team →</span>
+                    </a>
+                </div>
+                <div class="about-globe-side reveal">
+                    <div class="globe-container" id="globeContainer">
+                        <div class="globe-glow"></div>
+                        <canvas id="globeCanvas" width="500" height="500"></canvas>
+                        <!-- Orbit dots -->
+                        <div class="globe-orbit-ring">
+                            <div class="orbit-dot orbit-dot-1"></div>
+                            <div class="orbit-dot orbit-dot-2"></div>
+                            <div class="orbit-dot orbit-dot-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Three feature cards -->
+            <div class="about-features-grid">
+                <div class="about-feature-card reveal">
+                    <div class="about-feature-icon">
+                        <span>🌍</span>
+                    </div>
+                    <div class="about-feature-content">
+                        <h3 data-i18n="about_f1_title">Community-Driven</h3>
+                        <p data-i18n="about_f1_desc">Built by the community, for the community. Every submission enriches our shared language heritage.</p>
+                    </div>
+                </div>
+                <div class="about-feature-card reveal">
+                    <div class="about-feature-icon">
+                        <span>🔒</span>
+                    </div>
+                    <div class="about-feature-content">
+                        <h3 data-i18n="about_f2_title">Privacy-First</h3>
+                        <p data-i18n="about_f2_desc">Your personal information is never collected in the dataset. All submissions are reviewed before inclusion.</p>
+                    </div>
+                </div>
+                <div class="about-feature-card reveal">
+                    <div class="about-feature-icon">
+                        <span>🤖</span>
+                    </div>
+                    <div class="about-feature-content">
+                        <h3 data-i18n="about_f3_title">AI-Ready Format</h3>
+                        <p data-i18n="about_f3_desc">Approved data is automatically formatted into JSONL — the standard format for AI training.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ WHY CONTRIBUTE — Bento Grid ═══════════ -->
+    <section class="section section-why" id="why">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-i18n="why_tag">Why It Matters</span>
+                <h2 class="section-title" data-i18n="why_title">Why Your Data Matters</h2>
+            </div>
+            <div class="why-bento">
+                <div class="why-card reveal">
+                    <div class="why-card-number">01</div>
+                    <div class="why-card-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <h3 data-i18n="why1_title">Underrepresented Languages</h3>
+                    <p data-i18n="why1_desc">Tamil and Sinhala are severely underrepresented in global AI datasets. Your contribution helps bridge this gap and ensures our languages are not left behind in the AI revolution.</p>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-card-number">02</div>
+                    <div class="why-card-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3 data-i18n="why2_title">Cultural Preservation</h3>
+                    <p data-i18n="why2_desc">Language carries culture. By building AI that understands our languages, we preserve and promote the rich cultural heritage embedded in Tamil and Sinhala.</p>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-card-number">03</div>
+                    <div class="why-card-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 data-i18n="why3_title">Better Technology for All</h3>
+                    <p data-i18n="why3_desc">From translation to education, healthcare to government — multilingual AI improves services for every citizen of Sri Lanka.</p>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-card-number">04</div>
+                    <div class="why-card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-i18n="why4_title">Your Impact</h3>
+                    <p data-i18n="why4_desc">Every text you submit directly improves Mozhii.AI's ability to understand, translate, and generate content in your language. You're shaping the future of AI in Sri Lanka.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ USER GUIDE ═══════════ -->
+    <section class="section section-guide" id="guide">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-i18n="guide_tag">How It Works</span>
+                <h2 class="section-title" data-i18n="guide_heading">Simple, Transparent, Impactful</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card reveal">
+                    <div class="step-number-circle">01</div>
+                    <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3 data-i18n="step1_title">Prepare Your Data</h3>
+                    <p data-i18n="step1_desc">Gather text data in Tamil, Sinhala, or English. Accepted formats: .txt, .pdf, .docx, .csv, or images.</p>
+                </div>
+                <div class="step-connector reveal"><i class="fas fa-arrow-right"></i></div>
+                <div class="step-card reveal">
+                    <div class="step-number-circle">02</div>
+                    <div class="step-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <h3 data-i18n="step2_title">Submit Your Contribution</h3>
+                    <p data-i18n="step2_desc">Fill in the form below, paste your text or upload files, and submit your contribution.</p>
+                </div>
+                <div class="step-connector reveal"><i class="fas fa-arrow-right"></i></div>
+                <div class="step-card reveal">
+                    <div class="step-number-circle">03</div>
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <h3 data-i18n="step3_title">Our Team Reviews It</h3>
+                    <p data-i18n="step3_desc">Our team reviews every submission for quality and compliance before adding it to the dataset.</p>
+                </div>
+                <div class="step-connector reveal"><i class="fas fa-arrow-right"></i></div>
+                <div class="step-card reveal">
+                    <div class="step-number-circle">04</div>
+                    <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 data-i18n="step4_title">Powers Mozhii AI</h3>
+                    <p data-i18n="step4_desc">Approved data is used to train and improve Mozhii.AI, making it smarter and more accurate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ CONTRIBUTE FORM ═══════════ -->
+    <section class="section section-alt" id="contribute">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-i18n="form_tag">Submission Form</span>
+                <h2 class="section-title" data-i18n="form_title">Submit Your Contribution</h2>
+                <p class="section-subtitle">Complete the steps below to share your valuable language data with Mozhii.AI</p>
+            </div>
+
+            <div class="form-layout reveal">
+                <!-- Left: Form Progress Sidebar -->
+                <div class="form-sidebar">
+                    <div class="form-progress">
+                        <div class="progress-step active" data-step="1">
+                            <div class="progress-dot"><span>1</span></div>
+                            <div class="progress-info">
+                                <span class="progress-label">Language</span>
+                                <span class="progress-sub">Select your language</span>
+                            </div>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="2">
+                            <div class="progress-dot"><span>2</span></div>
+                            <div class="progress-info">
+                                <span class="progress-label">Your Info</span>
+                                <span class="progress-sub">Name & email</span>
+                            </div>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="3">
+                            <div class="progress-dot"><span>3</span></div>
+                            <div class="progress-info">
+                                <span class="progress-label">Upload</span>
+                                <span class="progress-sub">Text, docs, or photos</span>
+                            </div>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="4">
+                            <div class="progress-dot"><span>4</span></div>
+                            <div class="progress-info">
+                                <span class="progress-label">Submit</span>
+                                <span class="progress-sub">Confirm & send</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Instructions Button in sidebar -->
+                    <button type="button" class="btn-instructions" id="instructionsBtn">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Instructions & Policy</span>
+                    </button>
+                </div>
+
+                <!-- Right: Form Body -->
+                <div class="form-body">
+                    <form id="contributionForm" class="contribution-form" enctype="multipart/form-data">
+
+                        <!-- Step 1: Language -->
+                        <div class="form-section" data-form-step="1">
+                            <div class="form-section-header">
+                                <div class="form-section-icon"><i class="fas fa-globe"></i></div>
+                                <div>
+                                    <h3 data-i18n="form_language">Choose Language</h3>
+                                    <p>Which language is your data in?</p>
+                                </div>
+                            </div>
+                            <div class="lang-cards">
+                                <label class="lang-card">
+                                    <input type="radio" name="language" value="tamil" required>
+                                    <div class="lang-card-inner">
+                                        <span class="lang-card-flag">🇱🇰</span>
+                                        <span class="lang-card-name">Tamil</span>
+                                        <span class="lang-card-script">தமிழ்</span>
+                                    </div>
+                                </label>
+                                <label class="lang-card">
+                                    <input type="radio" name="language" value="sinhala">
+                                    <div class="lang-card-inner">
+                                        <span class="lang-card-flag">🇱🇰</span>
+                                        <span class="lang-card-name">Sinhala</span>
+                                        <span class="lang-card-script">සිංහල</span>
+                                    </div>
+                                </label>
+                                <label class="lang-card">
+                                    <input type="radio" name="language" value="english">
+                                    <div class="lang-card-inner">
+                                        <span class="lang-card-flag">🌐</span>
+                                        <span class="lang-card-name">English</span>
+                                        <span class="lang-card-script">ABC</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Details -->
+                        <div class="form-section" data-form-step="2">
+                            <div class="form-section-header">
+                                <div class="form-section-icon"><i class="fas fa-user-circle"></i></div>
+                                <div>
+                                    <h3 data-i18n="form_name">Your Details</h3>
+                                    <p>Let us know who's contributing</p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="input-wrapper input-glow">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="contribName" name="contributor_name" required placeholder="Your name *">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-wrapper input-glow">
+                                        <i class="fas fa-envelope"></i>
+                                        <input type="email" id="contribEmail" name="contributor_email" required placeholder="your@email.com *">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Upload -->
+                        <div class="form-section" data-form-step="3">
+                            <div class="form-section-header">
+                                <div class="form-section-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                <div>
+                                    <h3 data-i18n="form_datatype">Upload Your Data</h3>
+                                    <p>Choose a data format below</p>
+                                </div>
+                            </div>
+                            <div class="upload-tabs-pill">
+                                <button type="button" class="upload-tab-pill active" data-tab="text">
+                                    <i class="fas fa-keyboard"></i> Text
+                                </button>
+                                <button type="button" class="upload-tab-pill" data-tab="files">
+                                    <i class="fas fa-file-alt"></i> Documents
+                                </button>
+                                <button type="button" class="upload-tab-pill" data-tab="photos">
+                                    <i class="fas fa-images"></i> Photos
+                                </button>
+                            </div>
+
+                            <!-- Text Panel -->
+                            <div class="upload-panel active" id="textPanel">
+                                <textarea id="textContent" name="text_content" rows="6" 
+                                    placeholder="Paste your Tamil, Sinhala, or English text here..."></textarea>
+                                <div class="char-count"><i class="fas fa-font"></i> <span id="charCount">0</span> characters</div>
+                            </div>
+
+                            <!-- Documents Panel -->
+                            <div class="upload-panel" id="filesPanel">
+                                <div class="file-upload-area" id="fileDropZone">
+                                    <div class="file-upload-content">
+                                        <div class="upload-icon-ring">
+                                            <i class="fas fa-folder-open"></i>
+                                        </div>
+                                        <h4>Drop Documents Here</h4>
+                                        <p>or <span class="browse-link">browse files</span></p>
+                                        <span class="file-hint">.txt, .pdf, .docx, .csv — Max 20MB — Up to 5 files</span>
+                                    </div>
+                                    <input type="file" id="fileInput" name="files" multiple accept=".txt,.pdf,.docx,.csv" class="file-input-hidden">
+                                </div>
+                                <div class="file-list" id="fileList"></div>
+                            </div>
+
+                            <!-- Photos Panel -->
+                            <div class="upload-panel" id="photosPanel">
+                                <div class="file-upload-area photo-upload-area" id="photoDropZone">
+                                    <div class="file-upload-content">
+                                        <div class="upload-icon-ring">
+                                            <i class="fas fa-camera-retro"></i>
+                                        </div>
+                                        <h4>Drop Images Here</h4>
+                                        <p>or <span class="browse-link">browse images</span></p>
+                                        <span class="file-hint">.png, .jpg, .jpeg, .gif, .webp — Max 20MB</span>
+                                    </div>
+                                    <input type="file" id="photoInput" name="photos" multiple accept=".png,.jpg,.jpeg,.gif,.bmp,.webp" class="file-input-hidden">
+                                </div>
+                                <div class="photo-preview-grid" id="photoPreviewGrid"></div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Consent & Submit -->
+                        <div class="form-section form-section-final" data-form-step="4">
+                            <div class="consent-group">
+                                <label class="consent-label">
+                                    <input type="checkbox" id="consentCheck" required>
+                                    <span class="checkmark"></span>
+                                    <span data-i18n="form_consent">I confirm this submission contains no personal/sensitive information and I have the right to share it.</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-submit btn-glow" id="submitBtn">
+                                <span class="btn-text" data-i18n="form_submit">Submit Contribution</span>
+                                <span class="btn-loader hidden"><i class="fas fa-spinner fa-spin"></i></span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ INSTRUCTIONS POPUP ═══════════ -->
+    <div class="popup-overlay" id="instructionsPopup">
+        <div class="popup-card instructions-popup-card">
+            <button class="popup-close-btn" id="instructionsCloseBtn"><i class="fas fa-times"></i></button>
+            <div class="popup-icon" style="color: var(--accent)">
+                <i class="fas fa-clipboard-list"></i>
+            </div>
+            <h2>Instructions & Policy</h2>
+            <div class="instructions-popup-body">
+                <div class="instruction-section">
+                    <h4><i class="fas fa-check-circle" style="color: var(--success)"></i> Accepted File Types</h4>
+                    <ul>
+                        <li>.txt, .pdf, .docx, .csv</li>
+                        <li>Images: .png, .jpg, .jpeg, .gif, .webp</li>
+                        <li>Max 20MB per file, up to 5 files</li>
+                    </ul>
+                </div>
+                <div class="instruction-section">
+                    <h4><i class="fas fa-times-circle" style="color: var(--danger)"></i> Do Not Include</h4>
+                    <ul>
+                        <li>Personal information (names, addresses, phone numbers)</li>
+                        <li>Sensitive or confidential data</li>
+                        <li>Copyrighted content you don't have rights to</li>
+                        <li>Offensive, hateful, or inappropriate content</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="document.getElementById('instructionsPopup').classList.remove('active')">Got it!</button>
+        </div>
+    </div>
+
+    <!-- ═══════════ SUCCESS POPUP ═══════════ -->
+    <div class="popup-overlay" id="successPopup">
+        <div class="popup-card">
+            <div class="popup-icon success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 data-i18n="popup_title">Thank You!</h2>
+            <p data-i18n="popup_desc">Your contribution has been submitted successfully.</p>
+            <p class="popup-id">Submission ID: <strong id="submissionId"></strong></p>
+            <p class="popup-note" data-i18n="popup_note">Our team will review your submission. You'll receive an update via email.</p>
+            <button class="btn btn-primary" onclick="closePopup()" data-i18n="popup_close">Got it!</button>
+        </div>
+    </div>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer-compact">
+        <div class="container">
+            <div class="footer-compact-inner">
+                <div class="footer-compact-brand">
+                    <a href="#" class="nav-logo">
+                        <img src="/static/assets/logo.png" alt="Mozhii.AI" class="logo-img">
+                        <span class="logo-text">Data Collection Platform<span class="logo-dot"></span></span>
+                    </a>
+                    <p data-i18n="footer_desc">Building multilingual AI for Sri Lanka.</p>
+                </div>
+                <div class="footer-compact-links">
+                    <a href="#about" data-i18n="nav_about">About</a>
+                    <a href="#contribute" data-i18n="nav_contribute">Contribute</a>
+                    <a href="https://mozhii.online/team" target="_blank" data-i18n="nav_team">Our Team</a>
+                    <a href="mailto:Mozhii2025@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                </div>
+                <div class="footer-compact-end">
+                    <span>&copy; 2025 Mozhii.AI</span>
+                    <a href="/admin" class="admin-link"><i class="fas fa-lock"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════ LANGUAGE TOGGLE (Glass Pill - Right Side Middle) ═══════════ -->
+    <div class="lang-toggle-floating" id="langToggle">
+        <button class="lang-float-btn" data-lang="ta">தி</button>
+        <button class="lang-float-btn active" data-lang="en">EN</button>
+        <button class="lang-float-btn" data-lang="si">සිං</button>
+        <div class="lang-theme-divider"></div>
+        <button class="lang-theme-btn" id="floatingThemeToggle" title="Toggle theme">
+            <i class="fas fa-sun" id="floatingThemeIcon"></i>
+        </button>
+    </div>
+
+    <!-- ═══════════ CONTACT BUBBLE (Bottom Right) ═══════════ -->
+    <div class="contact-bubble" id="contactBubble">
+        <button class="bubble-btn" id="bubbleBtn" title="Share your thoughts">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+        <div class="bubble-popup" id="bubblePopup">
+            <div class="bubble-header">
+                <h4><i class="fas fa-paper-plane"></i> <span data-i18n="contact_title">Tell Us Something</span></h4>
+                <button class="bubble-close" id="bubbleClose"><i class="fas fa-times"></i></button>
+            </div>
+            <p class="bubble-hint">Feedback, thoughts, problems — we'd love to hear from you!</p>
+            <form id="feedbackForm">
+                <input type="text" placeholder="Your name (optional)" id="fbName">
+                <input type="email" placeholder="Your email (optional)" id="fbEmail">
+                <textarea placeholder="Write your message here..." id="fbMessage" required rows="4"></textarea>
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fas fa-paper-plane"></i> <span data-i18n="contact_send">Send to Mozhii</span>
+                </button>
+            </form>
+            <div class="bubble-success hidden" id="bubbleSuccess">
+                <i class="fas fa-check-circle"></i>
+                <p data-i18n="contact_thanks">Thank you! Your message has been sent to our team.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/i18n.js"></script>
+    <!-- EmailJS Configuration: Replace these with your actual EmailJS credentials -->
+    <script>
+        window.EMAILJS_PUBLIC_KEY  = "";  // Get from https://dashboard.emailjs.com/admin/account
+        window.EMAILJS_SERVICE_ID  = "";  // Your EmailJS service ID
+        window.EMAILJS_TEMPLATE_ID = "";  // Your EmailJS template ID
+    </script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
