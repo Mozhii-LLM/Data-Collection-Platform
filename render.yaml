@@ -18,8 +18,6 @@ services:
         value: "/data"               # Persistent disk mount path
       - key: CORS_ORIGINS
         value: "*"                   # Change to your domain after deployment
-      - key: PYTHON_VERSION
-        value: "3.11.0"
     disk:
       name: mozhii-data
       mountPath: /data               # Persistent disk for DB + uploads
